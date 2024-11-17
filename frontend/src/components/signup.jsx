@@ -5,8 +5,16 @@ export const Signup = () => {
   const [pass, setPass] = useState("");
   const [email, setEmail] = useState("");
 
-  const submitData = () => {
+  const submitData = async () => {
     console.warn(name, pass, email);
+    const result = await fetch("http://localhost:3000/register", {
+      method: "post",
+      body: JSON.stringify({ name, pass, email }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.warn(await result.json());
   };
   return (
     <div className="res">
